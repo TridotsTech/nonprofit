@@ -35,8 +35,8 @@ class Member(Document):
 				frappe.throw(_("{0} is already a member!").format(self.email))
 
 	def validate_email_type(self, email):
-		from frappe.utils import validate_email_add
-		validate_email_add(email.strip(), True)
+		from frappe.utils import validate_email_address
+		validate_email_address(email.strip(), True)
 		
 	def on_update(self):
 		add_user(self)		
