@@ -512,4 +512,13 @@ def check_subscription(self):
 				plan=frappe.db.get_all('Braintree Plans',filters={'price':self.membership_amount},fields=['*'])
 				if plan:
 					result=update_subscriptions(subscription[0].subscription_id,plan[0].name,plan[0].price)
+
+@frappe.whitelist()
+def get_member_exipry_date(member_id):
+	mem_end_date = frappe.db.get_all("Membership",
+				filters={"member":member_id},order_by='creation desc',
+				fields=['to_date'],limit_page_length=1)
+	if mem_end_date:
+		return mem_end_date[0]
+
 					

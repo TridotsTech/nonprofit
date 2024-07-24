@@ -34,18 +34,30 @@ frappe.ui.form.on('Member', {
                 }
             });
         }            
+        // frappe.call({
+        //     method: "frappe.client.get_value",
+        //     args: {
+        //         'doctype': "Membership",
+        //         'filters': { 'member': frm.doc.name },
+        //         'order_by':'creation desc',
+        //         'fieldname': [
+        //             'to_date'
+        //         ]
+        //     },
+        //     callback: function(data) {
+        //         if (data.message) {
+        //             frappe.model.set_value(frm.doctype, frm.docname,
+        //                 "membership_expiry_date", data.message.to_date);
+        //         }
+        //     }
+        // });
         frappe.call({
-            method: "frappe.client.get_value",
+            method: "nonprofit.nonprofit.doctype.member.member.get_member_exipry_date",
             args: {
-                'doctype': "Membership",
-                'filters': { 'member': frm.doc.name },
-                'order_by':'creation desc',
-                'fieldname': [
-                    'to_date'
-                ]
+                member_id: frm.doc.name
             },
             callback: function(data) {
-                if (data.message) {
+               if (data.message) {
                     frappe.model.set_value(frm.doctype, frm.docname,
                         "membership_expiry_date", data.message.to_date);
                 }
