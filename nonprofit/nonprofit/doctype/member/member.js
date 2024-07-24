@@ -39,6 +39,7 @@ frappe.ui.form.on('Member', {
             args: {
                 'doctype': "Membership",
                 'filters': { 'member': frm.doc.name },
+                'order_by':'creation desc',
                 'fieldname': [
                     'to_date'
                 ]
