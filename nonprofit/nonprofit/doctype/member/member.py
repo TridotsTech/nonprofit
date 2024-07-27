@@ -50,8 +50,8 @@ class Member(Document):
 		allowed=0
 		for item in validation:
 			allowed=allowed+item.allowed_members
-		if(len(self.get('table_25'))>allowed):
-			frappe.throw(_('Only {0} family members can be added for {1}').format(allowed,self.membership_type))
+		# if(len(self.get('table_25'))>allowed):
+		# 	frappe.throw(_('Only {0} family members can be added for {1}').format(allowed,self.membership_type))
 		# validation=frappe.db.get_all('Members Validation',fields=['relationship','allowed_members','age_limit','parent'], filters={'parent':self.membership_type})
 		validation=frappe.db.sql('''select v.relationship,v.allowed_members,v.age_limit,v.parent,
 			v.is_depend_on,v.depends_on from `tabMembers Validation` v,`tabMembers Validation` v2 
