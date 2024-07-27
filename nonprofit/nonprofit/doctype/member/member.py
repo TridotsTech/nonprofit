@@ -80,8 +80,8 @@ class Member(Document):
 						frappe.throw(_('You can add {0} or {1} together as {2} members in total').format(it.depends_on,it.relationship,total_count))
 		add_ChildUser(self)
 		check_child_member_status(self)
-		if self.email:
-			check_subscription(self)
+		# if self.email:
+		# 	check_subscription(self)
 		# check_current_membership(self)
 		# print(self.recurring_payment)
 		# if self.recurring_payment=="1":
